@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SecurityTokenConfig</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.gateway</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SecurityTokenConfig (nl.tudelft.sem.template.gateway)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SecurityTokenConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/ 17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SecurityTokenConfig$$EnhancerBySpringCGLIB$$f715a785</td>
+  </tr>
+  <tr>
+    <td class="name">SecurityTokenConfig$$EnhancerBySpringCGLIB$$f715a785$$FastClassBySpringCGLIB$$8c9d3e8b</td>
+  </tr>
+  <tr>
+    <td class="name">SecurityTokenConfig$$FastClassBySpringCGLIB$$5a0741d6</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/ 17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.gateway;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>4</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>5</i>&nbsp;import org.springframework.context.annotation.Bean;
+<i>6</i>&nbsp;import org.springframework.http.HttpMethod;
+<i>7</i>&nbsp;import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+<i>8</i>&nbsp;import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+<i>9</i>&nbsp;import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+<i>10</i>&nbsp;import org.springframework.security.config.http.SessionCreationPolicy;
+<i>11</i>&nbsp;import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;@EnableWebSecurity
+<i>15</i>&nbsp;// Enable security config. This annotation denotes config for spring security.
+<b class="fc"><i>16</i>&nbsp;public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {</b>
+<i>17</i>&nbsp;    @Autowired
+<i>18</i>&nbsp;    private transient JwtConfig jwtConfigure;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    protected void configure(HttpSecurity http) throws Exception {
+<b class="fc"><i>22</i>&nbsp;        http</b>
+<b class="fc"><i>23</i>&nbsp;                .csrf().disable()</b>
+<i>24</i>&nbsp;                // make sure we use stateless session; session won&#39;t be used to store user&#39;s state.
+<b class="fc"><i>25</i>&nbsp;                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)</b>
+<b class="fc"><i>26</i>&nbsp;                .and()</b>
+<i>27</i>&nbsp;                // handle an authorized attempts
+<b class="fc"><i>28</i>&nbsp;                .exceptionHandling()</b>
+<b class="fc"><i>29</i>&nbsp;                .authenticationEntryPoint((req, rsp, e) -&gt; rsp</b>
+<b class="nc"><i>30</i>&nbsp;                        .sendError(HttpServletResponse.SC_UNAUTHORIZED))</b>
+<b class="fc"><i>31</i>&nbsp;                .and()</b>
+<i>32</i>&nbsp;                // Add a filter to validate the tokens with every request
+<b class="fc"><i>33</i>&nbsp;                .addFilterAfter(</b>
+<i>34</i>&nbsp;                        new JwtTokenAuthenticationFilter(jwtConfigure),
+<i>35</i>&nbsp;                        UsernamePasswordAuthenticationFilter.class)
+<i>36</i>&nbsp;                // authorization requests config
+<b class="fc"><i>37</i>&nbsp;                .authorizeRequests()</b>
+<i>38</i>&nbsp;                // allow all who are accessing &quot;auth&quot; service
+<b class="fc"><i>39</i>&nbsp;                .antMatchers(HttpMethod.POST, jwtConfigure.getUri()).permitAll()</b>
+<i>40</i>&nbsp;                // must be an admin if trying to access admin area
+<i>41</i>&nbsp;                // (authentication is also required here)
+<b class="fc"><i>42</i>&nbsp;                .antMatchers(&quot;/gateway/auth&quot;).permitAll()</b>
+<b class="fc"><i>43</i>&nbsp;                .antMatchers(&quot;/gateway/admin/**&quot;).hasAnyAuthority(&quot;role admin&quot;)</b>
+<i>44</i>&nbsp;                // Any other request must be authenticated
+<b class="fc"><i>45</i>&nbsp;                .anyRequest().authenticated();</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Bean
+<i>49</i>&nbsp;    public JwtConfig jwtConfig() {
+<b class="fc"><i>50</i>&nbsp;        return new JwtConfig();</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

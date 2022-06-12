@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FieldReservationController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.reservations.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FieldReservationController (nl.tudelft.sem.template.reservations.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FieldReservationController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.reservations.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import java.time.LocalDateTime;
+<i>5</i>&nbsp;import nl.tudelft.sem.template.reservations.entities.EquipmentReservation;
+<i>6</i>&nbsp;import nl.tudelft.sem.template.reservations.entities.FieldReservation;
+<i>7</i>&nbsp;import nl.tudelft.sem.template.reservations.services.FieldReservationService;
+<i>8</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>9</i>&nbsp;import org.springframework.format.annotation.DateTimeFormat;
+<i>10</i>&nbsp;import org.springframework.stereotype.Controller;
+<i>11</i>&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+<i>12</i>&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+<i>13</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>14</i>&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+<i>15</i>&nbsp;import org.springframework.web.bind.annotation.ResponseBody;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;@Controller // This means that this class is a Controller
+<i>18</i>&nbsp;@RequestMapping
+<i>19</i>&nbsp;        // This means URL&#39;s start with /demo (after Application path)
+<i>20</i>&nbsp;        (path = &quot;/fieldreservation&quot;)
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;public class FieldReservationController {</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Autowired
+<i>25</i>&nbsp;    private transient FieldReservationService fieldReservationService;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * Creates a new FieldReservation.
+<i>30</i>&nbsp;     *
+<i>31</i>&nbsp;     * @param id the fieldReservationId
+<i>32</i>&nbsp;     * @param fieldId the fieldId
+<i>33</i>&nbsp;     * @param reserver the reserverId
+<i>34</i>&nbsp;     * @param startTime the startTime of the FieldReservation
+<i>35</i>&nbsp;     * @param group the groupId
+<i>36</i>&nbsp;     * @return the status of the request
+<i>37</i>&nbsp;     */
+<i>38</i>&nbsp;    @PostMapping(path = &quot;/add&quot;) // Map ONLY POST Requests
+<i>39</i>&nbsp;    @ResponseBody
+<i>40</i>&nbsp;    public String addNewFieldRes(@RequestParam int id,
+<i>41</i>&nbsp;                                     @RequestParam int fieldId,
+<i>42</i>&nbsp;                                     @RequestParam int reserver,
+<i>43</i>&nbsp;                                     @RequestParam @DateTimeFormat
+<i>44</i>&nbsp;                                             (iso = DateTimeFormat.ISO.DATE_TIME)
+<i>45</i>&nbsp;                                             LocalDateTime startTime,
+<i>46</i>&nbsp;                                 @RequestParam int group) {
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;        // @ResponseBody means the returned String is the response, not a view name
+<i>49</i>&nbsp;        // @RequestParam means it is a parameter from the GET or POST request
+<i>50</i>&nbsp;
+<b class="fc"><i>51</i>&nbsp;        fieldReservationService.addNewFieldRes(id, fieldId, reserver, startTime, group);</b>
+<b class="fc"><i>52</i>&nbsp;        return &quot;Saved&quot;;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * Gets all FieldReservations.
+<i>57</i>&nbsp;     *
+<i>58</i>&nbsp;     * @return the status of the response
+<i>59</i>&nbsp;     */
+<i>60</i>&nbsp;    @GetMapping(path = &quot;/all&quot;)
+<i>61</i>&nbsp;    @ResponseBody
+<i>62</i>&nbsp;    public Iterable&lt;FieldReservation&gt; getAllFieldRes() {
+<i>63</i>&nbsp;        // This returns a JSON or XML with the users
+<b class="nc"><i>64</i>&nbsp;        return fieldReservationService.getAllFieldRes();</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    /**
+<i>68</i>&nbsp;     * Updates an FieldReservation.
+<i>69</i>&nbsp;     *
+<i>70</i>&nbsp;     * @param id the id of the FieldReservation to update
+<i>71</i>&nbsp;     * @param fieldId the id of the field to update
+<i>72</i>&nbsp;     * @param reserver the id of the reserver to update
+<i>73</i>&nbsp;     * @param startTime the startTime of the FieldReservation to update
+<i>74</i>&nbsp;     * @param group the id of the group
+<i>75</i>&nbsp;     * @return the status of the request
+<i>76</i>&nbsp;     */
+<i>77</i>&nbsp;    @PostMapping(path = &quot;/update&quot;)
+<i>78</i>&nbsp;    @ResponseBody
+<i>79</i>&nbsp;    public String updateFieldRes(@RequestParam int id, @RequestParam int fieldId,
+<i>80</i>&nbsp;                                  @RequestParam int reserver,
+<i>81</i>&nbsp;                                  @RequestParam @DateTimeFormat
+<i>82</i>&nbsp;                                          (iso = DateTimeFormat.ISO.DATE_TIME)
+<i>83</i>&nbsp;                                          LocalDateTime startTime,
+<i>84</i>&nbsp;                                         @RequestParam int group) {
+<b class="fc"><i>85</i>&nbsp;        return fieldReservationService.updateFieldReservation(id, fieldId, reserver,</b>
+<b class="fc"><i>86</i>&nbsp;                startTime, group);</b>
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    /**
+<i>90</i>&nbsp;     * Deletes an FieldReservation by id.
+<i>91</i>&nbsp;     *
+<i>92</i>&nbsp;     * @param id the id of the FieldReservation to be deleted
+<i>93</i>&nbsp;     */
+<i>94</i>&nbsp;    @PostMapping(path = &quot;/delete&quot;)
+<i>95</i>&nbsp;    @ResponseBody
+<i>96</i>&nbsp;    public String deleteFieldRes(@RequestParam int id) {
+<b class="fc"><i>97</i>&nbsp;        return fieldReservationService.deleteFieldRes(id);</b>
+<i>98</i>&nbsp;    }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    @PostMapping(path = &quot;/userReservations&quot;)
+<i>102</i>&nbsp;    @ResponseBody
+<i>103</i>&nbsp;    public Iterable&lt;FieldReservation&gt; userReservations(@RequestParam int id) {
+<i>104</i>&nbsp;        // This returns a JSON or XML with the users
+<b class="nc"><i>105</i>&nbsp;        return fieldReservationService.userReservations(id);</b>
+<i>106</i>&nbsp;    }
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

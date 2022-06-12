@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FieldController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.field</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FieldController (nl.tudelft.sem.template.field)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FieldController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.field;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>4</i>&nbsp;import org.springframework.stereotype.Controller;
+<i>5</i>&nbsp;import org.springframework.web.bind.annotation.DeleteMapping;
+<i>6</i>&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+<i>7</i>&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+<i>8</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>9</i>&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+<i>10</i>&nbsp;import org.springframework.web.bind.annotation.ResponseBody;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;@Controller
+<i>13</i>&nbsp;@RequestMapping(path = &quot;/field&quot;)
+<b class="fc"><i>14</i>&nbsp;public class FieldController {</b>
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    @Autowired
+<i>17</i>&nbsp;    private transient FieldService fieldService;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @PostMapping(path = &quot;/add&quot;)
+<i>20</i>&nbsp;    public @ResponseBody
+<i>21</i>&nbsp;    String addNewField(@RequestParam int id,
+<i>22</i>&nbsp;                       @RequestParam String name,
+<i>23</i>&nbsp;                       @RequestParam int minCapacity,
+<i>24</i>&nbsp;                       @RequestParam int maxCapacity) {
+<i>25</i>&nbsp;
+<b class="fc"><i>26</i>&nbsp;        return fieldService.addNewField(id, name, minCapacity, maxCapacity);</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @GetMapping(path = &quot;/all&quot;)
+<i>30</i>&nbsp;    public @ResponseBody
+<i>31</i>&nbsp;    Iterable&lt;Field&gt; getAllFields() {
+<b class="fc"><i>32</i>&nbsp;        return fieldService.getAllFields();</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @PostMapping(path = &quot;/update&quot;)
+<i>36</i>&nbsp;    public @ResponseBody
+<i>37</i>&nbsp;    String updateField(@RequestParam int id, @RequestParam String name,
+<i>38</i>&nbsp;                       @RequestParam int minCapacity,
+<i>39</i>&nbsp;                       @RequestParam int maxCapacity) {
+<b class="fc"><i>40</i>&nbsp;        return fieldService.updateField(id, name, minCapacity, maxCapacity);</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @PostMapping(path = &quot;/delete&quot;)
+<i>44</i>&nbsp;    public @ResponseBody String deleteField(@RequestParam int id) {
+<b class="fc"><i>45</i>&nbsp;        return fieldService.deleteField(id);</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @PostMapping(path = &quot;/changeCapacity&quot;)
+<i>49</i>&nbsp;    public @ResponseBody
+<i>50</i>&nbsp;    String changeCapacity(@RequestParam int id, @RequestParam int maxCapacity) {
+<b class="fc"><i>51</i>&nbsp;        return fieldService.setCapacity(id, maxCapacity);</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

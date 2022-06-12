@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GroupUserService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.groups.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GroupUserService (nl.tudelft.sem.template.groups.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GroupUserService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202</td>
+  </tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202$auxiliary$baZ4Q7X6</td>
+  </tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202$auxiliary$bk5gWEAR</td>
+  </tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202$auxiliary$cd4qZjPf</td>
+  </tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202$auxiliary$d4qQxXQF</td>
+  </tr>
+  <tr>
+    <td class="name">GroupUserService$MockitoMock$421816202$auxiliary$zgGdHyW8</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.groups.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import nl.tudelft.sem.template.groups.entities.GroupUser;
+<i>4</i>&nbsp;import nl.tudelft.sem.template.groups.entities.GroupUserId;
+<i>5</i>&nbsp;import nl.tudelft.sem.template.groups.repositories.GroupUserRepository;
+<i>6</i>&nbsp;import org.springframework.dao.EmptyResultDataAccessException;
+<i>7</i>&nbsp;import org.springframework.stereotype.Service;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;@Service
+<i>10</i>&nbsp;public class GroupUserService {
+<i>11</i>&nbsp;    //@Autowired
+<i>12</i>&nbsp;    private transient GroupUserRepository groupUserRepository;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public GroupUserService(GroupUserRepository groupUserRepository) {</b>
+<b class="fc"><i>15</i>&nbsp;        this.groupUserRepository = groupUserRepository;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    /**
+<i>19</i>&nbsp;     * Creates a new GroupUser.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param group the group
+<i>22</i>&nbsp;     * @param user the user
+<i>23</i>&nbsp;     * @return the status of the request
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public String addNewGroupUser(int group, int user) {
+<b class="fc"><i>26</i>&nbsp;        GroupUser g = new GroupUser();</b>
+<b class="fc"><i>27</i>&nbsp;        g.setGroup(group);</b>
+<b class="fc"><i>28</i>&nbsp;        g.setUser(user);</b>
+<b class="fc"><i>29</i>&nbsp;        groupUserRepository.save(g);</b>
+<b class="fc"><i>30</i>&nbsp;        return &quot;Saved&quot;;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    /**
+<i>34</i>&nbsp;     * Returns all GroupsUsers.
+<i>35</i>&nbsp;     *
+<i>36</i>&nbsp;     * @return the status of the request
+<i>37</i>&nbsp;     */
+<i>38</i>&nbsp;    public Iterable&lt;GroupUser&gt; getAllGroupUsers() {
+<b class="fc"><i>39</i>&nbsp;        return groupUserRepository.findAll();</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    /**
+<i>43</i>&nbsp;     * Deletes a GroupUser.
+<i>44</i>&nbsp;     *
+<i>45</i>&nbsp;     * @param group the group
+<i>46</i>&nbsp;     * @param user the user
+<i>47</i>&nbsp;     * @return the status of the request
+<i>48</i>&nbsp;     */
+<i>49</i>&nbsp;    public String deleteGroupUser(int group, int user) {
+<b class="fc"><i>50</i>&nbsp;        GroupUserId id = new GroupUserId(group, user);</b>
+<i>51</i>&nbsp;        try {
+<b class="fc"><i>52</i>&nbsp;            groupUserRepository.deleteById(id);</b>
+<b class="fc"><i>53</i>&nbsp;            return &quot;Deleted&quot;;</b>
+<b class="fc"><i>54</i>&nbsp;        } catch (EmptyResultDataAccessException e) {</b>
+<b class="fc"><i>55</i>&nbsp;            return &quot;GroupUser does not exist&quot;;</b>
+<i>56</i>&nbsp;        }
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

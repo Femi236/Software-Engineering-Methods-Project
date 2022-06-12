@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EquipmentReservation</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.reservations.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EquipmentReservation (nl.tudelft.sem.template.reservations.entities)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EquipmentReservation</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/ 30)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EquipmentReservation$HibernateProxy$arS3ll8c</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/ 30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.reservations.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.time.LocalDate;
+<i>4</i>&nbsp;import java.time.LocalDateTime;
+<i>5</i>&nbsp;import java.util.Objects;
+<i>6</i>&nbsp;import javax.persistence.Column;
+<i>7</i>&nbsp;import javax.persistence.Entity;
+<i>8</i>&nbsp;import javax.persistence.GeneratedValue;
+<i>9</i>&nbsp;import javax.persistence.GenerationType;
+<i>10</i>&nbsp;import javax.persistence.Id;
+<i>11</i>&nbsp;import javax.persistence.Table;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;@Entity
+<i>14</i>&nbsp;@Table(name = &quot;equipmentreservation&quot;)
+<i>15</i>&nbsp;public class EquipmentReservation {
+<i>16</i>&nbsp;    @Id
+<i>17</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<i>18</i>&nbsp;    @Column(name = &quot;equipmentreservation_id&quot;)
+<i>19</i>&nbsp;    private Integer id;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Column(name = &quot;equipment_id&quot;)
+<i>22</i>&nbsp;    private Integer equipmentId;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private Integer reserver;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Column(name = &quot;start_time&quot;)
+<i>27</i>&nbsp;    private LocalDateTime startTime;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Simple constructor.
+<i>32</i>&nbsp;     */
+<b class="fc"><i>33</i>&nbsp;    public EquipmentReservation(){</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    /**
+<i>39</i>&nbsp;     * Constructor method.
+<i>40</i>&nbsp;     *
+<i>41</i>&nbsp;     * @param id Reservation id
+<i>42</i>&nbsp;     * @param equipmentId Equipment id
+<i>43</i>&nbsp;     * @param reserver Reservation&#39;s username
+<i>44</i>&nbsp;     * @param startTime Start time of reservation
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    public EquipmentReservation(Integer id,
+<i>47</i>&nbsp;                            Integer equipmentId,
+<i>48</i>&nbsp;                            Integer reserver,
+<b class="fc"><i>49</i>&nbsp;                            LocalDateTime startTime) {</b>
+<b class="fc"><i>50</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>51</i>&nbsp;        this.equipmentId = equipmentId;</b>
+<b class="fc"><i>52</i>&nbsp;        this.reserver = reserver;</b>
+<b class="fc"><i>53</i>&nbsp;        this.startTime = startTime;</b>
+<b class="fc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    public Integer getId() {
+<b class="fc"><i>57</i>&nbsp;        return id;</b>
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    public void setId(Integer id) {
+<b class="fc"><i>61</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>62</i>&nbsp;    }</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    public Integer getEquipmentId() {
+<b class="fc"><i>65</i>&nbsp;        return equipmentId;</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    public void setEquipmentId(Integer equipmentId) {
+<b class="fc"><i>69</i>&nbsp;        this.equipmentId = equipmentId;</b>
+<b class="fc"><i>70</i>&nbsp;    }</b>
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    public Integer getReserver() {
+<b class="fc"><i>73</i>&nbsp;        return reserver;</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    public void setReserver(Integer reserver) {
+<b class="fc"><i>77</i>&nbsp;        this.reserver = reserver;</b>
+<b class="fc"><i>78</i>&nbsp;    }</b>
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    public LocalDateTime getStartTime() {
+<b class="fc"><i>81</i>&nbsp;        return startTime;</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public void setStartTime(LocalDateTime startTime) {
+<b class="fc"><i>85</i>&nbsp;        this.startTime = startTime;</b>
+<b class="fc"><i>86</i>&nbsp;    }</b>
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    @Override
+<i>89</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>90</i>&nbsp;        if (this == o) {</b>
+<b class="fc"><i>91</i>&nbsp;            return true;</b>
+<i>92</i>&nbsp;        }
+<b class="fc"><i>93</i>&nbsp;        if (o == null || getClass() != o.getClass()) {</b>
+<b class="fc"><i>94</i>&nbsp;            return false;</b>
+<i>95</i>&nbsp;        }
+<i>96</i>&nbsp;
+<b class="fc"><i>97</i>&nbsp;        EquipmentReservation equipmentReservation = (EquipmentReservation) o;</b>
+<b class="fc"><i>98</i>&nbsp;        return id.equals(equipmentReservation.id)</b>
+<b class="fc"><i>99</i>&nbsp;                &amp;&amp; equipmentId.equals(equipmentReservation.equipmentId)</b>
+<b class="fc"><i>100</i>&nbsp;                &amp;&amp; reserver.equals(equipmentReservation.reserver)</b>
+<b class="fc"><i>101</i>&nbsp;                &amp;&amp; startTime.equals(equipmentReservation.startTime);</b>
+<i>102</i>&nbsp;    }
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    @Override
+<i>105</i>&nbsp;    public int hashCode() {
+<b class="fc"><i>106</i>&nbsp;        return Objects.hash(id, equipmentId, reserver, startTime);</b>
+<i>107</i>&nbsp;    }
+<i>108</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

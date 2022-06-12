@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FieldReservation</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.reservations.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FieldReservation (nl.tudelft.sem.template.reservations.entities)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FieldReservation</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/ 35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FieldReservation$HibernateProxy$IfcVC80n</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/ 35)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.reservations.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.time.LocalDate;
+<i>4</i>&nbsp;import java.time.LocalDateTime;
+<i>5</i>&nbsp;import java.util.Objects;
+<i>6</i>&nbsp;import javax.persistence.Column;
+<i>7</i>&nbsp;import javax.persistence.Entity;
+<i>8</i>&nbsp;import javax.persistence.GeneratedValue;
+<i>9</i>&nbsp;import javax.persistence.GenerationType;
+<i>10</i>&nbsp;import javax.persistence.Id;
+<i>11</i>&nbsp;import javax.persistence.Table;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;@Entity
+<i>14</i>&nbsp;@Table(name = &quot;fieldreservation&quot;)
+<i>15</i>&nbsp;public class FieldReservation {
+<i>16</i>&nbsp;    @Id
+<i>17</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<i>18</i>&nbsp;    @Column(name = &quot;fieldreservation_id&quot;)
+<i>19</i>&nbsp;    private Integer id;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Column(name = &quot;field&quot;)
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    private Integer fieldId;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    private Integer reserver;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @Column(name = &quot;start_time&quot;)
+<i>28</i>&nbsp;    private LocalDateTime startTime;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Column(name = &quot;team&quot;)
+<i>31</i>&nbsp;    private Integer group;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    /**
+<i>35</i>&nbsp;     * Simple constructor.
+<i>36</i>&nbsp;     */
+<b class="fc"><i>37</i>&nbsp;    public FieldReservation(){</b>
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    /**
+<i>43</i>&nbsp;     * Constructor method.
+<i>44</i>&nbsp;     *
+<i>45</i>&nbsp;     * @param id Reservation id
+<i>46</i>&nbsp;     * @param fieldId Field id
+<i>47</i>&nbsp;     * @param reserver the Id of reserver
+<i>48</i>&nbsp;     * @param startTime Start time of reservation
+<i>49</i>&nbsp;     * @param group the Id of the group
+<i>50</i>&nbsp;     */
+<i>51</i>&nbsp;    public FieldReservation(Integer id,
+<i>52</i>&nbsp;                                Integer fieldId,
+<i>53</i>&nbsp;                                Integer reserver,
+<i>54</i>&nbsp;                                LocalDateTime startTime,
+<b class="fc"><i>55</i>&nbsp;                                Integer group) {</b>
+<b class="fc"><i>56</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>57</i>&nbsp;        this.fieldId = fieldId;</b>
+<b class="fc"><i>58</i>&nbsp;        this.reserver = reserver;</b>
+<b class="fc"><i>59</i>&nbsp;        this.startTime = startTime;</b>
+<b class="fc"><i>60</i>&nbsp;        this.group = group;</b>
+<b class="fc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public Integer getId() {
+<b class="fc"><i>64</i>&nbsp;        return id;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void setId(Integer id) {
+<b class="fc"><i>68</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public Integer getFieldId() {
+<b class="fc"><i>72</i>&nbsp;        return fieldId;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public void setFieldId(Integer fieldId) {
+<b class="fc"><i>76</i>&nbsp;        this.fieldId = fieldId;</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public Integer getReserver() {
+<b class="fc"><i>80</i>&nbsp;        return reserver;</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void setReserver(Integer reserver) {
+<b class="fc"><i>84</i>&nbsp;        this.reserver = reserver;</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public LocalDateTime getStartTime() {
+<b class="fc"><i>88</i>&nbsp;        return startTime;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public void setStartTime(LocalDateTime startTime) {
+<b class="fc"><i>92</i>&nbsp;        this.startTime = startTime;</b>
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public Integer getGroup() {
+<b class="fc"><i>96</i>&nbsp;        return group;</b>
+<i>97</i>&nbsp;    }
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    public void setGroup(Integer group) {
+<b class="fc"><i>100</i>&nbsp;        this.group = group;</b>
+<b class="fc"><i>101</i>&nbsp;    }</b>
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    @Override
+<i>104</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>105</i>&nbsp;        if (this == o) {</b>
+<b class="fc"><i>106</i>&nbsp;            return true;</b>
+<i>107</i>&nbsp;        }
+<b class="fc"><i>108</i>&nbsp;        if (o == null || getClass() != o.getClass()) {</b>
+<b class="fc"><i>109</i>&nbsp;            return false;</b>
+<i>110</i>&nbsp;        }
+<i>111</i>&nbsp;
+<b class="fc"><i>112</i>&nbsp;        FieldReservation fieldReservation = (FieldReservation) o;</b>
+<b class="fc"><i>113</i>&nbsp;        return id.equals(fieldReservation.id)</b>
+<b class="fc"><i>114</i>&nbsp;                &amp;&amp; fieldId.equals(fieldReservation.fieldId)</b>
+<b class="fc"><i>115</i>&nbsp;                &amp;&amp; reserver.equals(fieldReservation.reserver)</b>
+<b class="fc"><i>116</i>&nbsp;                &amp;&amp; startTime.equals(fieldReservation.startTime)</b>
+<b class="fc"><i>117</i>&nbsp;                &amp;&amp; group.equals(fieldReservation.group);</b>
+<i>118</i>&nbsp;    }
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    @Override
+<i>122</i>&nbsp;    public int hashCode() {
+<b class="fc"><i>123</i>&nbsp;        return Objects.hash(id, fieldId, reserver, startTime, group);</b>
+<i>124</i>&nbsp;    }
+<i>125</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

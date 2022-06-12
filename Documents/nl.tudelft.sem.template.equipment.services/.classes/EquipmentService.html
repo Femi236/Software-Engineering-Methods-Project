@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EquipmentService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.equipment.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EquipmentService (nl.tudelft.sem.template.equipment.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EquipmentService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/ 22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$b0IL3GnF</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$DutuA6mk</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$PeD0vpa0</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$qaReykU7</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$TsyeCNQi</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentService$MockitoMock$1577600531$auxiliary$YeoEBGHf</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/ 22)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.equipment.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;//import nl.tudelft.sem.template.equipment.NegativeStockException;
+<i>4</i>&nbsp;import nl.tudelft.sem.template.equipment.entities.Equipment;
+<i>5</i>&nbsp;import nl.tudelft.sem.template.equipment.repositories.EquipmentRepository;
+<i>6</i>&nbsp;import org.springframework.dao.EmptyResultDataAccessException;
+<i>7</i>&nbsp;import org.springframework.stereotype.Service;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;@Service
+<i>10</i>&nbsp;public class EquipmentService {
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    private transient EquipmentRepository equipmentRepository;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public EquipmentService(EquipmentRepository equipmentRepository) {</b>
+<b class="fc"><i>15</i>&nbsp;        this.equipmentRepository = equipmentRepository;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    /**
+<i>19</i>&nbsp;     * Creates a new Equipment.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param type the type of the equipment
+<i>22</i>&nbsp;     * @return the status of the request
+<i>23</i>&nbsp;     */
+<i>24</i>&nbsp;    public String addNewEquipment(int type) {
+<b class="fc"><i>25</i>&nbsp;        if (type &lt; 0) {</b>
+<b class="fc"><i>26</i>&nbsp;            return &quot;Type cannot be negative&quot;;</b>
+<i>27</i>&nbsp;        } else {
+<b class="fc"><i>28</i>&nbsp;            Equipment e = new Equipment();</b>
+<b class="fc"><i>29</i>&nbsp;            e.setType(type);</b>
+<b class="fc"><i>30</i>&nbsp;            equipmentRepository.save(e);</b>
+<b class="fc"><i>31</i>&nbsp;            return &quot;Saved&quot;;</b>
+<i>32</i>&nbsp;        }
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    /**
+<i>36</i>&nbsp;     * Gets all equipment.
+<i>37</i>&nbsp;     *
+<i>38</i>&nbsp;     *  @return the status of the request
+<i>39</i>&nbsp;     */
+<i>40</i>&nbsp;    public Iterable&lt;Equipment&gt; getAllEquipment() {
+<b class="fc"><i>41</i>&nbsp;        return equipmentRepository.findAll();</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    /**
+<i>45</i>&nbsp;     * Updates an Equipment.
+<i>46</i>&nbsp;     *
+<i>47</i>&nbsp;     * @param id the id of the equipment to update
+<i>48</i>&nbsp;     * @param type the type of the equipment
+<i>49</i>&nbsp;     * @return the status of the request
+<i>50</i>&nbsp;     */
+<i>51</i>&nbsp;    public String updateEquipment(int id, int type) {
+<b class="fc"><i>52</i>&nbsp;        Equipment equipment = equipmentRepository.findById(id).orElse(null);</b>
+<b class="fc"><i>53</i>&nbsp;        if (equipment == null) {</b>
+<b class="fc"><i>54</i>&nbsp;            return &quot;Equipment does not exist&quot;;</b>
+<i>55</i>&nbsp;        }
+<b class="fc"><i>56</i>&nbsp;        if (type &lt; 0) {</b>
+<b class="fc"><i>57</i>&nbsp;            return &quot;Type cannot be negative&quot;;</b>
+<i>58</i>&nbsp;        }
+<b class="fc"><i>59</i>&nbsp;        equipment.setType(type);</b>
+<b class="fc"><i>60</i>&nbsp;        equipmentRepository.save(equipment);</b>
+<b class="fc"><i>61</i>&nbsp;        return &quot;Updated&quot;;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Deletes an Equipment by the id.
+<i>66</i>&nbsp;     *
+<i>67</i>&nbsp;     * @param id the id of the equipment to delete
+<i>68</i>&nbsp;     * @return the status of the request
+<i>69</i>&nbsp;     */
+<i>70</i>&nbsp;    public String deleteEquipment(int id) {
+<i>71</i>&nbsp;        try {
+<b class="fc"><i>72</i>&nbsp;            equipmentRepository.deleteById(id);</b>
+<b class="fc"><i>73</i>&nbsp;            return &quot;Deleted&quot;;</b>
+<b class="fc"><i>74</i>&nbsp;        } catch (EmptyResultDataAccessException e) {</b>
+<b class="fc"><i>75</i>&nbsp;            return &quot;Equipment does not exist&quot;;</b>
+<i>76</i>&nbsp;        }
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

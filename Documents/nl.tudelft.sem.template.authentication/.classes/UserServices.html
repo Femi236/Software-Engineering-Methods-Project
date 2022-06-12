@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserServices</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.authentication</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserServices (nl.tudelft.sem.template.authentication)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserServices</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (12/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.authentication;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.persistence.EntityNotFoundException;
+<i>4</i>&nbsp;import org.springframework.stereotype.Service;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;@Service
+<i>7</i>&nbsp;public class UserServices {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    private transient UserRepository userRepository;
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;    public UserServices(UserRepository userRepository) {</b>
+<b class="fc"><i>12</i>&nbsp;        this.userRepository = userRepository;</b>
+<b class="fc"><i>13</i>&nbsp;    }</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    /** update user method.
+<i>16</i>&nbsp;     *
+<i>17</i>&nbsp;     * @param id of the user
+<i>18</i>&nbsp;     * @param firstName of the user
+<i>19</i>&nbsp;     * @param lastName of the user
+<i>20</i>&nbsp;     * @param password of the user
+<i>21</i>&nbsp;     * @param role of the user
+<i>22</i>&nbsp;     * @param netId of the user
+<i>23</i>&nbsp;     * @return updated user
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public String updateUser(int id, String firstName, String lastName,
+<i>26</i>&nbsp;                             String password, String role, String netId) {
+<b class="fc"><i>27</i>&nbsp;        if (userRepository.findById(id).isPresent()) {</b>
+<b class="fc"><i>28</i>&nbsp;            User oldUser = userRepository.findById(id).get();</b>
+<b class="fc"><i>29</i>&nbsp;            oldUser.setNetId(netId);</b>
+<b class="fc"><i>30</i>&nbsp;            oldUser.setFirstName(firstName);</b>
+<b class="fc"><i>31</i>&nbsp;            oldUser.setLastName(lastName);</b>
+<b class="fc"><i>32</i>&nbsp;            oldUser.setPassword(password);</b>
+<b class="fc"><i>33</i>&nbsp;            oldUser.setRole(role);</b>
+<b class="fc"><i>34</i>&nbsp;            userRepository.save(oldUser);</b>
+<b class="fc"><i>35</i>&nbsp;            return &quot;saved&quot;;</b>
+<i>36</i>&nbsp;        } else {
+<b class="nc"><i>37</i>&nbsp;            throw new EntityNotFoundException(</b>
+<i>38</i>&nbsp;                    &quot;User not found for parameters {id=&quot; + id + &quot;}.&quot;
+<i>39</i>&nbsp;            );
+<i>40</i>&nbsp;        }
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

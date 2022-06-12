@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GroupService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.groups.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GroupService (nl.tudelft.sem.template.groups.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GroupService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/ 18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$00frZlqI</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$H2eCAnIY</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$n1AmcLXl</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$Uc1tngU2</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$ueVLVn26</td>
+  </tr>
+  <tr>
+    <td class="name">GroupService$MockitoMock$87183465$auxiliary$v1Y4ZoxP</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/ 18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.groups.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import nl.tudelft.sem.template.groups.entities.Group;
+<i>4</i>&nbsp;import nl.tudelft.sem.template.groups.repositories.GroupRepository;
+<i>5</i>&nbsp;import org.springframework.dao.EmptyResultDataAccessException;
+<i>6</i>&nbsp;import org.springframework.stereotype.Service;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;@Service
+<i>9</i>&nbsp;public class GroupService {
+<i>10</i>&nbsp;    //@Autowired
+<i>11</i>&nbsp;    private transient GroupRepository groupRepository;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public GroupService(GroupRepository groupRepository) {</b>
+<b class="fc"><i>14</i>&nbsp;        this.groupRepository = groupRepository;</b>
+<b class="fc"><i>15</i>&nbsp;    }</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Creates a new Group.
+<i>19</i>&nbsp;     *
+<i>20</i>&nbsp;     * @param creator the user that created the group
+<i>21</i>&nbsp;     * @return the state of the request
+<i>22</i>&nbsp;     */
+<i>23</i>&nbsp;    public String addNewGroup(int creator) {
+<b class="fc"><i>24</i>&nbsp;        Group g = new Group();</b>
+<b class="fc"><i>25</i>&nbsp;        g.setCreator(creator);</b>
+<b class="fc"><i>26</i>&nbsp;        groupRepository.save(g);</b>
+<b class="fc"><i>27</i>&nbsp;        return &quot;Saved&quot;;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Returns all Groups.
+<i>32</i>&nbsp;     *
+<i>33</i>&nbsp;     * @return an iterable of all Groups
+<i>34</i>&nbsp;     */
+<i>35</i>&nbsp;    public Iterable&lt;Group&gt; getAllGroups() {
+<b class="fc"><i>36</i>&nbsp;        return groupRepository.findAll();</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**
+<i>40</i>&nbsp;     * Updates a Group.
+<i>41</i>&nbsp;     *
+<i>42</i>&nbsp;     * @param id the id of the Group to update
+<i>43</i>&nbsp;     * @param creator the user that created the group to update
+<i>44</i>&nbsp;     * @return the status of the request
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    public String updateGroup(int id, int creator) {
+<b class="fc"><i>47</i>&nbsp;        Group findGroup = groupRepository.findById(id).orElse(null);</b>
+<b class="fc"><i>48</i>&nbsp;        if (findGroup == null) {</b>
+<b class="fc"><i>49</i>&nbsp;            return &quot;Group does not exist&quot;;</b>
+<i>50</i>&nbsp;        }
+<i>51</i>&nbsp;        // Check if user is in group
+<b class="fc"><i>52</i>&nbsp;        Group g = new Group(id, creator);</b>
+<b class="fc"><i>53</i>&nbsp;        groupRepository.save(g);</b>
+<b class="fc"><i>54</i>&nbsp;        return &quot;Updated&quot;;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    /**
+<i>58</i>&nbsp;     * Deletes a Group by its id.
+<i>59</i>&nbsp;     *
+<i>60</i>&nbsp;     * @param id the id of the group to delete
+<i>61</i>&nbsp;     * @return the statys of the request
+<i>62</i>&nbsp;     */
+<i>63</i>&nbsp;    public String deleteGroup(int id) {
+<i>64</i>&nbsp;        try {
+<b class="fc"><i>65</i>&nbsp;            groupRepository.deleteById(id);</b>
+<b class="fc"><i>66</i>&nbsp;            return &quot;Deleted&quot;;</b>
+<b class="fc"><i>67</i>&nbsp;        } catch (EmptyResultDataAccessException e) {</b>
+<b class="fc"><i>68</i>&nbsp;            return &quot;Group does not exist&quot;;</b>
+<i>69</i>&nbsp;        }
+<i>70</i>&nbsp;    }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;}
+<i>73</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

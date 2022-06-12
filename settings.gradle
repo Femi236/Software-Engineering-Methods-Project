@@ -1,0 +1,10 @@
+rootProject.name = 'template'
+
+include 'Authentication'
+include 'Equipment'
+include 'Fields'
+include 'Groups'
+include 'Reservations'
+include 'Gateway'
+include 'Eureka'
+

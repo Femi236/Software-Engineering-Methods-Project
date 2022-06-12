@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EquipmentTypeService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.equipment.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EquipmentTypeService (nl.tudelft.sem.template.equipment.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EquipmentTypeService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.6%
+  </span>
+  <span class="absValue">
+    (22/ 26)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$4G8CNjpl</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$9WuOLnK8</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$D7AgnSSb</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$HhQDMLWU</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$LxGUHG8i</td>
+  </tr>
+  <tr>
+    <td class="name">EquipmentTypeService$MockitoMock$1700097910$auxiliary$TxaMOPHk</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.6%
+  </span>
+  <span class="absValue">
+    (22/ 26)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.equipment.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;//import nl.tudelft.sem.template.equipmentType.NegativeStockException;
+<i>4</i>&nbsp;import nl.tudelft.sem.template.equipment.entities.EquipmentType;
+<i>5</i>&nbsp;import nl.tudelft.sem.template.equipment.repositories.EquipmentTypeRepository;
+<i>6</i>&nbsp;import org.springframework.dao.DataIntegrityViolationException;
+<i>7</i>&nbsp;import org.springframework.dao.EmptyResultDataAccessException;
+<i>8</i>&nbsp;import org.springframework.stereotype.Service;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;@Service
+<i>11</i>&nbsp;public class EquipmentTypeService {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    private transient EquipmentTypeRepository equipmentTypeRepository;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public EquipmentTypeService(EquipmentTypeRepository equipmentTypeRepository) {</b>
+<b class="fc"><i>16</i>&nbsp;        this.equipmentTypeRepository = equipmentTypeRepository;</b>
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    /**
+<i>20</i>&nbsp;     * Creates a new EquipmentType.
+<i>21</i>&nbsp;     *
+<i>22</i>&nbsp;     * @param name the name of the equipmentType
+<i>23</i>&nbsp;     * @return the status of the request
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public String addNewEquipmentType(String name) {
+<b class="fc"><i>26</i>&nbsp;        if (name == null) {</b>
+<b class="fc"><i>27</i>&nbsp;            return &quot;Name cannot be null&quot;;</b>
+<i>28</i>&nbsp;        }
+<b class="fc"><i>29</i>&nbsp;        EquipmentType equipmentType = new EquipmentType();</b>
+<b class="fc"><i>30</i>&nbsp;        equipmentType.setName(name);</b>
+<i>31</i>&nbsp;        try {
+<b class="fc"><i>32</i>&nbsp;            equipmentTypeRepository.save(equipmentType);</b>
+<b class="fc"><i>33</i>&nbsp;            return &quot;Saved&quot;;</b>
+<b class="nc"><i>34</i>&nbsp;        } catch (DataIntegrityViolationException e) {</b>
+<b class="nc"><i>35</i>&nbsp;            return &quot;EquipmentType with name &#39;&quot; + name + &quot;&#39; already exists&quot;;</b>
+<i>36</i>&nbsp;        }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    /**
+<i>41</i>&nbsp;     * Gets all equipmentType.
+<i>42</i>&nbsp;     *
+<i>43</i>&nbsp;     *  @return the status of the request
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    public Iterable&lt;EquipmentType&gt; getAllEquipmentType() {
+<b class="fc"><i>46</i>&nbsp;        return equipmentTypeRepository.findAll();</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Updates an EquipmentType.
+<i>51</i>&nbsp;     *
+<i>52</i>&nbsp;     * @param id the id of the equipmentType to update
+<i>53</i>&nbsp;     * @param name the name of the equipmentType to update
+<i>54</i>&nbsp;     * @return the status of the request
+<i>55</i>&nbsp;     */
+<i>56</i>&nbsp;    public String updateEquipmentType(int id, String name) {
+<b class="fc"><i>57</i>&nbsp;        EquipmentType equipmentType = equipmentTypeRepository.findById(id).orElse(null);</b>
+<b class="fc"><i>58</i>&nbsp;        if (equipmentType == null) {</b>
+<b class="fc"><i>59</i>&nbsp;            return &quot;EquipmentType does not exist&quot;;</b>
+<i>60</i>&nbsp;        }
+<b class="fc"><i>61</i>&nbsp;        if (name == null) {</b>
+<b class="fc"><i>62</i>&nbsp;            return &quot;Name cannot be null&quot;;</b>
+<i>63</i>&nbsp;        }
+<b class="fc"><i>64</i>&nbsp;        equipmentType.setName(name);</b>
+<i>65</i>&nbsp;        try {
+<b class="fc"><i>66</i>&nbsp;            equipmentTypeRepository.save(equipmentType);</b>
+<b class="fc"><i>67</i>&nbsp;            return &quot;Updated&quot;;</b>
+<b class="nc"><i>68</i>&nbsp;        } catch (DataIntegrityViolationException e) {</b>
+<b class="nc"><i>69</i>&nbsp;            return &quot;EquipmentType with name &#39;&quot; + name + &quot;&#39; already exists&quot;;</b>
+<i>70</i>&nbsp;        }
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    /**
+<i>74</i>&nbsp;     * Deletes an EquipmentType by the id.
+<i>75</i>&nbsp;     *
+<i>76</i>&nbsp;     * @param id the id of the equipmentType to delete
+<i>77</i>&nbsp;     * @return the status of the request
+<i>78</i>&nbsp;     */
+<i>79</i>&nbsp;    public String deleteEquipmentType(int id) {
+<i>80</i>&nbsp;        try {
+<b class="fc"><i>81</i>&nbsp;            equipmentTypeRepository.deleteById(id);</b>
+<b class="fc"><i>82</i>&nbsp;            return &quot;Deleted&quot;;</b>
+<b class="fc"><i>83</i>&nbsp;        } catch (EmptyResultDataAccessException e) {</b>
+<b class="fc"><i>84</i>&nbsp;            return &quot;EquipmentType does not exist&quot;;</b>
+<i>85</i>&nbsp;        }
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

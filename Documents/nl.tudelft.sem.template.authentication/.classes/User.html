@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: User</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.authentication</a> ]
+</div>
+
+<h1>Coverage Summary for Class: User (nl.tudelft.sem.template.authentication)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">User</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/ 28)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">User$HibernateProxy$90GRSEGA</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/ 28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;
+<i>2</i>&nbsp;package nl.tudelft.sem.template.authentication;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import com.sun.istack.NotNull;
+<i>5</i>&nbsp;import java.util.Objects;
+<i>6</i>&nbsp;import javax.persistence.Column;
+<i>7</i>&nbsp;import javax.persistence.Entity;
+<i>8</i>&nbsp;import javax.persistence.GeneratedValue;
+<i>9</i>&nbsp;import javax.persistence.GenerationType;
+<i>10</i>&nbsp;import javax.persistence.Id;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;@Entity // This tells Hibernate to make a table out of this class
+<i>13</i>&nbsp;public class User {
+<i>14</i>&nbsp;    @Id
+<i>15</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<i>16</i>&nbsp;    private Integer id;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Column(name = &quot;first_name&quot;)
+<i>19</i>&nbsp;    private String firstName;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Column(name = &quot;last_name&quot;)
+<i>22</i>&nbsp;    private String lastName;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private String password;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    private String role;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @NotNull
+<i>29</i>&nbsp;    @Column(unique = true)
+<i>30</i>&nbsp;    private String netId;
+<i>31</i>&nbsp;
+<b class="fc"><i>32</i>&nbsp;    public User() {</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    /**.
+<i>37</i>&nbsp;     * constructor method.
+<i>38</i>&nbsp;     *
+<i>39</i>&nbsp;     * @param  id of user
+<i>40</i>&nbsp;     * @param firstName of user
+<i>41</i>&nbsp;     * @param lastName of user
+<i>42</i>&nbsp;     * @param password of user
+<i>43</i>&nbsp;     * @param role admin or student
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    public User(Integer id, String firstName, String lastName,
+<b class="fc"><i>46</i>&nbsp;                String password, String role, String netId) {</b>
+<b class="fc"><i>47</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>48</i>&nbsp;        this.firstName = firstName;</b>
+<b class="fc"><i>49</i>&nbsp;        this.lastName = lastName;</b>
+<b class="fc"><i>50</i>&nbsp;        this.password = password;</b>
+<b class="fc"><i>51</i>&nbsp;        this.role = role;</b>
+<b class="fc"><i>52</i>&nbsp;        this.netId = netId;</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public Integer getId() {
+<b class="fc"><i>56</i>&nbsp;        return id;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public void setId(Integer id) {
+<b class="fc"><i>60</i>&nbsp;        this.id = id;</b>
+<b class="fc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public String getFirstName() {
+<b class="fc"><i>64</i>&nbsp;        return firstName;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void setFirstName(String firstName) {
+<b class="fc"><i>68</i>&nbsp;        this.firstName = firstName;</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public String getLastName() {
+<b class="fc"><i>72</i>&nbsp;        return lastName;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public void setLastName(String lastName) {
+<b class="fc"><i>76</i>&nbsp;        this.lastName = lastName;</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public String getPassword() {
+<b class="fc"><i>80</i>&nbsp;        return password;</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void setPassword(String password) {
+<b class="fc"><i>84</i>&nbsp;        this.password = password;</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public String getRole() {
+<b class="fc"><i>88</i>&nbsp;        return role;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public void setRole(String role) {
+<b class="fc"><i>92</i>&nbsp;        this.role = role;</b>
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public String getNetId() {
+<b class="fc"><i>96</i>&nbsp;        return netId;</b>
+<i>97</i>&nbsp;    }
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    public void setNetId(String netId) {
+<b class="fc"><i>100</i>&nbsp;        this.netId = netId;</b>
+<b class="fc"><i>101</i>&nbsp;    }</b>
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

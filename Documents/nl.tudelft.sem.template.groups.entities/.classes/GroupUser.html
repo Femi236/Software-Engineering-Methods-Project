@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GroupUser</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.groups.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GroupUser (nl.tudelft.sem.template.groups.entities)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GroupUser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GroupUser$HibernateProxy$mZbwccAN</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.groups.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.persistence.Column;
+<i>4</i>&nbsp;import javax.persistence.Entity;
+<i>5</i>&nbsp;import javax.persistence.Id;
+<i>6</i>&nbsp;import javax.persistence.IdClass;
+<i>7</i>&nbsp;import javax.persistence.Table;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;@Entity
+<i>10</i>&nbsp;@Table(name = &quot;team_user&quot;)
+<i>11</i>&nbsp;@IdClass(GroupUserId.class)
+<i>12</i>&nbsp;public class GroupUser {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Id
+<i>16</i>&nbsp;    @Column(name = &quot;team&quot;)
+<i>17</i>&nbsp;    private int group;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Id
+<i>20</i>&nbsp;    private int user;
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;    public GroupUser() {</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<b class="fc"><i>26</i>&nbsp;    public GroupUser(int group, int user) {</b>
+<b class="fc"><i>27</i>&nbsp;        this.group = group;</b>
+<b class="fc"><i>28</i>&nbsp;        this.user = user;</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public int getGroup() {
+<b class="fc"><i>32</i>&nbsp;        return group;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public void setGroup(int group) {
+<b class="fc"><i>36</i>&nbsp;        this.group = group;</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public int getUser() {
+<b class="fc"><i>40</i>&nbsp;        return user;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public void setUser(int user) {
+<b class="fc"><i>44</i>&nbsp;        this.user = user;</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>

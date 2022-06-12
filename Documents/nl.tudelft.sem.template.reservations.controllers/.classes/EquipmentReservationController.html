@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EquipmentReservationController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">nl.tudelft.sem.template.reservations.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EquipmentReservationController (nl.tudelft.sem.template.reservations.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EquipmentReservationController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57.1%
+  </span>
+  <span class="absValue">
+    (4/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (6/ 9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package nl.tudelft.sem.template.reservations.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import java.time.LocalDateTime;
+<i>5</i>&nbsp;import nl.tudelft.sem.template.reservations.entities.EquipmentReservation;
+<i>6</i>&nbsp;import nl.tudelft.sem.template.reservations.services.EquipmentReservationService;
+<i>7</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>8</i>&nbsp;import org.springframework.format.annotation.DateTimeFormat;
+<i>9</i>&nbsp;import org.springframework.stereotype.Controller;
+<i>10</i>&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+<i>11</i>&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+<i>12</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>13</i>&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+<i>14</i>&nbsp;import org.springframework.web.bind.annotation.ResponseBody;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;@Controller // This means that this class is a Controller
+<i>17</i>&nbsp;@RequestMapping
+<i>18</i>&nbsp;        // This means URL&#39;s start with /demo (after Application path)
+<i>19</i>&nbsp;        (path = &quot;/equipmentreservation&quot;)
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;public class EquipmentReservationController {</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Autowired
+<i>24</i>&nbsp;    private transient EquipmentReservationService equipmentReservationService;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Creates a new EquipmentReservation.
+<i>29</i>&nbsp;     *
+<i>30</i>&nbsp;     * @param id the EquipmentReservationId
+<i>31</i>&nbsp;     * @param equipmentId the equipmentId
+<i>32</i>&nbsp;     * @param reserver the reserverId
+<i>33</i>&nbsp;     * @param startTime the startTime of the EquipmentReservation
+<i>34</i>&nbsp;     * @return the status of the request
+<i>35</i>&nbsp;     */
+<i>36</i>&nbsp;    @PostMapping(path = &quot;/add&quot;) // Map ONLY POST Requests
+<i>37</i>&nbsp;    @ResponseBody
+<i>38</i>&nbsp;    public String addNewEquipmentRes(@RequestParam int id,
+<i>39</i>&nbsp;                                                   @RequestParam int equipmentId,
+<i>40</i>&nbsp;                                                   @RequestParam int reserver,
+<i>41</i>&nbsp;                                                   @RequestParam @DateTimeFormat
+<i>42</i>&nbsp;                                                           (iso = DateTimeFormat.ISO.DATE_TIME)
+<i>43</i>&nbsp;                                                               LocalDateTime startTime) {
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;        // @ResponseBody means the returned String is the response, not a view name
+<i>46</i>&nbsp;        // @RequestParam means it is a parameter from the GET or POST request
+<i>47</i>&nbsp;
+<b class="fc"><i>48</i>&nbsp;        equipmentReservationService.addNewEquipmentRes(id, equipmentId, reserver, startTime);</b>
+<b class="fc"><i>49</i>&nbsp;        return &quot;Saved&quot;;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    /**
+<i>53</i>&nbsp;     * Gets all EquipmentReservations.
+<i>54</i>&nbsp;     *
+<i>55</i>&nbsp;     * @return the status of the response
+<i>56</i>&nbsp;     */
+<i>57</i>&nbsp;    @GetMapping(path = &quot;/all&quot;)
+<i>58</i>&nbsp;    @ResponseBody
+<i>59</i>&nbsp;    public Iterable&lt;EquipmentReservation&gt; getAllEquipmentRes() {
+<i>60</i>&nbsp;        // This returns a JSON or XML with the users
+<b class="nc"><i>61</i>&nbsp;        return equipmentReservationService.getAllEquipmentRes();</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Gets all the reservations for a single piece of equipment.
+<i>66</i>&nbsp;     *
+<i>67</i>&nbsp;     * @param id the equipment id
+<i>68</i>&nbsp;     * @return the list of reservations
+<i>69</i>&nbsp;     */
+<i>70</i>&nbsp;    @PostMapping(path = &quot;/reservationsForEquipment&quot;)
+<i>71</i>&nbsp;    @ResponseBody
+<i>72</i>&nbsp;    public Iterable&lt;EquipmentReservation&gt; reservationsForEquipment(@RequestParam int id) {
+<i>73</i>&nbsp;        // This returns a JSON or XML with the users
+<b class="nc"><i>74</i>&nbsp;        return equipmentReservationService.getReservationsForEquipment(id);</b>
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    /**
+<i>78</i>&nbsp;     * Gets all the reservations for a user.
+<i>79</i>&nbsp;     *
+<i>80</i>&nbsp;     * @param id the id of the user
+<i>81</i>&nbsp;     * @return the list of reservations
+<i>82</i>&nbsp;     */
+<i>83</i>&nbsp;    @PostMapping(path = &quot;/userReservations&quot;)
+<i>84</i>&nbsp;    @ResponseBody
+<i>85</i>&nbsp;    public Iterable&lt;EquipmentReservation&gt; userReservations(@RequestParam int id) {
+<i>86</i>&nbsp;        // This returns a JSON or XML with the users
+<b class="nc"><i>87</i>&nbsp;        return equipmentReservationService.userReservations(id);</b>
+<i>88</i>&nbsp;    }
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    /**
+<i>92</i>&nbsp;     * Updates an EquipmentReservation.
+<i>93</i>&nbsp;     *
+<i>94</i>&nbsp;     * @param id the id of the EquipmentReservation to update
+<i>95</i>&nbsp;     * @param equipmentId the id of the equipment to update
+<i>96</i>&nbsp;     * @param reserver the id of the reserver to update
+<i>97</i>&nbsp;     * @param startTime the startTime of the EquipmentReservation to update
+<i>98</i>&nbsp;     * @return the status of the request
+<i>99</i>&nbsp;     */
+<i>100</i>&nbsp;    @PostMapping(path = &quot;/update&quot;)
+<i>101</i>&nbsp;    @ResponseBody
+<i>102</i>&nbsp;    public String updateEquipmentRes(@RequestParam int id, @RequestParam int equipmentId,
+<i>103</i>&nbsp;                                              @RequestParam int reserver,
+<i>104</i>&nbsp;                                              @RequestParam @DateTimeFormat
+<i>105</i>&nbsp;                                                      (iso = DateTimeFormat.ISO.DATE_TIME)
+<i>106</i>&nbsp;                                                          LocalDateTime startTime) {
+<b class="fc"><i>107</i>&nbsp;        return equipmentReservationService.updateEquipmentReservation(id, equipmentId,</b>
+<b class="fc"><i>108</i>&nbsp;                reserver, startTime);</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    /**
+<i>112</i>&nbsp;     * Deletes an EquipmentReservation by id.
+<i>113</i>&nbsp;     *
+<i>114</i>&nbsp;     * @param id the id of the EquipmentReservation to be deleted
+<i>115</i>&nbsp;     */
+<i>116</i>&nbsp;    @PostMapping(path = &quot;/delete&quot;)
+<i>117</i>&nbsp;    @ResponseBody
+<i>118</i>&nbsp;    public String deleteEquipmentRes(@RequestParam int id) {
+<b class="fc"><i>119</i>&nbsp;        return equipmentReservationService.deleteEquipmentRes(id);</b>
+<i>120</i>&nbsp;    }
+<i>121</i>&nbsp;
+<i>122</i>&nbsp;
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-18 20:21</div>
+</div>
+</body>
+</html>
